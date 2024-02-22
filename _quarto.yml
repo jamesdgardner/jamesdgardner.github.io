@@ -9,16 +9,20 @@ website:
     left:
       - text: Project
         href: project.qmd
+        
       - text: Blog
         href: blog-listing.qmd
+
+      - text: R Baiscs:
+        href: danl-200-quarto.qmd
             
   page-footer: 
-    center: "Powered with GitHub and Quarto<br>© YOUR NAME, 2023"
+    center: "Powered with GitHub and Quarto<br>© James Gardner, 2024"
 
 format:
   html:
     theme: 
-      light: flatly
+      light: cosmo
       dark: darkly
     mainfont: system-ui; 
     highlight-style: atom-one

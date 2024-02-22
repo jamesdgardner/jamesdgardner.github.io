@@ -1,41 +1,41 @@
 ---
-title: "James Gardner" 
-about:
-  template: trestles  # jolla  trestles  solana  marquee  broadside
-  image: img/profile.png
+title: "James D. Gardner" 
+about: 
+  template: trestles # jolla  trestles  solana  marquee  broadside
+  image: img/IMG_4549.png
   image-width: 16em
   image-shape: round # rectangle  round  rounded
   
   links:
-    - icon: linkedin
-      text: LinkedIn
-      href: https://linkedin.com
-    - icon: instagram
-      text: Instagram
-      href: https://instagram.com
     - icon: github
       text: GitHub
-      href: https://github.com
+      href: https://github.com/jamesdgardner
+      
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://GITHUB_USERNAME.github.io/resume-example.pdf
+      href: https://bclogJamesDGardner_Resume.pdf
+      
     - icon: mailbox
       text: Email
-      href: mailto:YOUR_EMAIL@geneseo.edu
+      href: mailto:jdg19@geneseo.edu
+      
+    - icon: linkedin
+      text: LinkedIn
+      href: LinkedIn.com
 
 ---
 
 
-Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
+James Gardner majors in Finance at SUNY Geneseo. When he is not working towards his degree, he enjoys strength training, hiking, and reading books. 
 
 ## Education
 
 State University of New York at Geneseo | Geneseo, NY <br>
-B.S. in Data Analytics | Aug 2022 - May 2026 <br>
-Minor in Business Administration 
+B.S. in Finance | January 2024 - May 2026 <br>
+ 
 
 ## Experience
 
-Starbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024
+Orchard Park, Parks & Recreation | Camp Counselor | May 2022 - Now
 
 
