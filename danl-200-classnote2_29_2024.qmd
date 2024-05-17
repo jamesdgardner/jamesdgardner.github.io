@@ -1,0 +1,262 @@
+---
+title: Lecture XXXX - Note    # e.g., Lecture 10 - Note
+subtitle: SOME TOPICS  # e.g., Aesthetic Mappings; Facets; Geometric Objects 
+author: 
+  - name: YOUR NAME   # e.g., Byeong-Hak Choe
+date: last-modified   # e.g., 2024-02-29
+
+execute: 
+  echo: true        # true false
+  eval: true        # true false
+  warning: false    # true false
+  message: false    # true false
+  fig-width: 9
+  # fig-height: 5
+  
+format: 
+  html:
+    toc: true                # true false
+    number-sections: true    # true false
+    code-fold: false         # true false show   # https://quarto.org/docs/output-formats/html-code.html
+    code-tools: true         # true false
+    highlight-style: a11y          # a11y arrow ayu atom-one breeze github gruvbox tango espresso
+                                   # pygments tango espresso espresso zenburn kate nord
+                                   # https://quarto.org/docs/output-formats/html-code.html#highlighting
+---
+
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(skimr)
+library(hrbrthemes)
+library(DT)
+library(rmarkdown)
+
+```
+
+# Aesthetic Mappings
+
+- An aesthetic is a visual property (e.g., size, shape, color) of the objects (e.g., class) in our plot.
+  - We can display a point in different ways by changing the values of its aesthetic properties.
+
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = 
+               aes(x = displ, 
+                   y = hwy, 
+                   color = class) )
+```
+
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = 
+               aes(x = displ, 
+                   y = hwy, 
+                   shape = class) )
+```
+
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = 
+               aes(x = displ, 
+                   y = hwy, 
+                   size = class) )
+```
+## Overplotting Issues
+
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = 
+               aes(x = displ,
+                   y = hwy ))
+
+```
+```{r}
+skimr::skim(mpg)
+
+```
+```{r}
+# The problem with the above scatter-plots is that they don't have all 234 data points.
+# This is called an "over-plotting problem"
+# This happens because many observations have the exact same data points, therefore the sit on top of one another on the graph
+# The following includes extra command "alpha = .2" which helps to fix this issue, it makes points with more overlaps darker
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = 
+               aes(x = displ,
+                   y = hwy ),
+             alpha = .2)
+
+```
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = 
+               aes(x = displ, y = hwy ,
+                   color = class),
+             alpha = .25)
+
+```
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = 
+               aes(x = displ, 
+                   y = hwy), 
+             color = "blue")
+```
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = 
+               aes(x = displ, 
+                   y = hwy), 
+             shape = 0)
+
+```
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy,
+                           color = "blue"))
+
+# in this situation, R thinks "blue" is a text variable, not actually a color
+
+```
+
+
+
+
+
+
+
+
+
+
+
+## Section 2
+
+```{r}
+unique(mpg$class)
+length(unique(mpg$class))
+```
+
+
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy,
+                           color = (displ > 5 & hwy > 20)))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_smooth(mapping =
+                aes(x = displ,
+                    y = hwy))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping =
+               aes(x = displ,
+                   y = hwy),
+             alpha = .3) +
+  geom_smooth(mapping = 
+                aes(x = displ, 
+                    y = hwy))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_histogram(mapping =
+                   aes(x = displ))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_histogram(mapping =
+                   aes(x = displ),
+                   bins = 5)
+
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_boxplot(mapping =
+                 aes(x = class,
+                     y = hwy))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy),
+             alpha = .33) + 
+  facet_grid(drv ~ .)
+
+
+```
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy),
+             alpha = .33) + 
+  facet_grid(. ~ drv)
+
+
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy),
+             alpha = .33) + 
+  facet_wrap(~ class, nrow = 2)
+
+
+```
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy),
+             alpha = .33) + 
+  facet_wrap(. ~ class, nrow = 2)
+
+
+```
+```{r}
+library(tvshows)
+```
+```{r}
+holiday_movies <- read_csv("https://bcdanl.github.io/data/holiday_movies_w_genres.csv")
+tvshows <- read_csv(
+        'https://bcdanl.github.io/data/tvshows.csv')
+```
+
+
+
+```{r}
+
+ggplot(data = tvshows) +
+  geom_point(mapping = aes(x = GRP, y = PE), alpha = .5) +
+  geom_smooth(mapping = aes(x = GRP, y = PE)) +
+  facet_wrap(Genre ~ .)
+```
+```{r}
+
+ggplot(data = tvshows) +
+  geom_point(mapping = aes(x = GRP, y = PE, color = Genre), alpha = .5) +
+  geom_smooth(mapping = aes(x = GRP, y = PE, color = Genre), method = lm)
+```
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,180 @@
+---
+title: "classnoteslecture15"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+# start lecture (log)
+log functions are an important part of data analytics, watch some youtube videos to refresh yourself with its significance and its uses.
+
+```{r}
+library(tidyverse)
+sale_df <- read_csv(
+  "https://bcdanl.github.io/data/home_sales_nyc.csv")
+```
+
+```{r}
+ggplot(sale_df, 
+       aes(x = sale.price), 
+       bins = 500) +
+  geom_histogram()
+```
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut))
+```
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = 
+             aes(x = cut, 
+                 color = cut))
+```
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = 
+             aes(x = cut, 
+                 fill = cut))
+```
+```{r}
+# to make a simple data.frame
+demo <- tribble(         
+  ~cut,         ~freq,
+  "Fair",       1610,
+  "Good",       4906,
+  "Very Good",  12082,
+  "Premium",    13791,
+  "Ideal",      21551 )
+
+diamonds <- ggplot2::diamonds
+
+
+ggplot(data = demo) +
+  geom_bar(mapping = 
+             aes(x = cut, 
+                 y = freq), 
+           stat = "identity")
+```
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = 
+             aes(x = cut, 
+                 y = stat(prop), 
+                 group = 1))
+```
+```{r}
+ggplot(diamonds,
+       aes(x = cut, y =stat(prop), group = 1)) +
+  geom_bar()
+```
+the command group = 1 is necessary in this case; heres an example of it without it (its unreadable)
+```{r}
+ggplot(diamonds,
+       aes(x = cut, y =stat(prop))) +
+  geom_bar()
+```
+```{r}
+ggplot(data = diamonds) + 
+  stat_summary(
+    mapping = aes(x = cut, y = depth),
+    fun.min = min,
+    fun.max = max,
+    fun = median
+  )
+```
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = 
+             aes(x = cut, 
+                 fill = clarity) )
+```
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = 
+             aes(x = cut, 
+                 fill = clarity),
+           position = "stack")
+```
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = 
+             aes(x = cut, 
+                 fill = clarity), 
+           position = "fill")
+```
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = 
+             aes(x = cut, 
+                 fill = clarity), 
+           position = "dodge")
+```
+```{r}
+# ggplot(data = <DATA>) + 
+  # <GEOM_FUNCTION>(
+     # mapping = aes(<MAPPINGS>),
+     # stat = <STAT>, 
+     # position = <POSITION>) +
+  # <FACET_FUNCTION>
+```
+
+```{r}
+library(nycflights13)
+flights <- nycflights13::flights
+```
+```{r}
+ggplot(flights, aes(x = carrier, fill = carrier)) +
+         geom_bar()
+```
+```{r}
+ggplot(flights, aes(x = carrier, y = stat(prop), fill = carrier)) +
+         geom_bar()
+```
+```{r}
+ggplot(flights, aes(x = origin, fill = carrier)) +
+         geom_bar()
+```
+```{r}
+ggplot(flights, aes(x = origin, fill = carrier)) +
+         geom_bar(position = "fill")
+```
+```{r}
+ggplot(flights, aes(x = origin, fill = carrier)) +
+         geom_bar(position = "dodge")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
