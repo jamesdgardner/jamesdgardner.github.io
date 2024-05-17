@@ -13,7 +13,7 @@ website:
       - text: Blog
         href: blog-listing.qmd
 
-      - text: R Baiscs:
+      - text: R Basics
         href: danl-200-quarto.qmd
             
   page-footer: 
